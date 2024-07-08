@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 
 const auth = require('./routes/authentication')
-app.use('/api', auth)
+app.use('/api/v1/auth', auth)
 
 app.listen(port, () => {
     console.log('Server is running at ' + port)
