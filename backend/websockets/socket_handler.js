@@ -5,9 +5,7 @@ const socketHandler = (server) => {
 
     io.on('connect', (socket) => {
         console.log('New client is connected')
-
         require('./chat_socket')(socket)
-
         socket.on('disconnect', () => {
             console.log('Client disconnected')
         })
