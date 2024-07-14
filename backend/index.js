@@ -9,9 +9,9 @@ app.use(express.json())
 const auth = require('./routes/authentication')
 app.use('/api/v1/auth', auth)
 
-app.listen(appPort, () => {
-    console.log('Server is running at ' + appPort)
-})
+// app.listen(appPort, () => {
+//     console.log('Server is running at ' + appPort)
+// })
 
 const dbConnect = require('./config/database')
 dbConnect()
@@ -21,8 +21,8 @@ const socketPort = process.env.WEBSOCKET_PORT || 4000
 const server = http.createServer(app)
 socketHandler(server)
 
-server.listen(socketPort, () => {
-    console.log('Web socket running at port ' + socketPort)
+server.listen(appPort, () => {
+    console.log('Web socket running at port ' + appPort)
 })
 
 app.get('/', (req, res) => {
