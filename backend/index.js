@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const http = require('http')
+const https = require('https')
 
 const appPort  = process.env.APP_PORT || 3000
 const app = express()
@@ -18,7 +18,7 @@ dbConnect()
 
 const socketHandler = require('./websockets/socket_handler')
 const socketPort = process.env.WEBSOCKET_PORT || 4000
-const server = http.createServer(app)
+const server = https.createServer(app)
 socketHandler(server)
 
 server.listen(socketPort, () => {
