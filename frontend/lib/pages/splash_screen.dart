@@ -15,13 +15,13 @@ class SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     super.initState();
     Timer(
-        splashScreenDuration,
-            () async {
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: loginRoute)
-          );
-        }
+      splashScreenDuration,
+      () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: loginRoute)
+        );
+      }
     );
   }
 
