@@ -1,6 +1,6 @@
 const chatSocket = (socket) => {
     socket.on('sendMessage', (message) => {
-        socket.emit('receiveMessage', message)
+        socket.broadcast.emit('receiveMessage', message)
     })
 }
 
