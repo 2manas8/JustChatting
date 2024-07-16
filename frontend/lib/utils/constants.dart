@@ -10,6 +10,7 @@ const double defaultMargin = 8.0;
 const double defaultBorderRadius = 10.0;
 
 // Text constants
+const String appNameText = 'JustChatting';
 const String signUpText = 'Sign Up';
 const String loginText = 'Login';
 const String loginUsernameText = 'Enter username';

@@ -5,4 +5,5 @@ class AppColors {
   static Color primaryColor = Color(0xFFFFFFFF);
   static Color secondaryColor = Color(0xFFFCBA03);
   static Color tertiaryColor = Color(0xFF757575);
+  static Color errorTextColor = Color(0xFFF44336);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/providers/auth_providers.dart';
 import 'package:frontend/providers/controllers.dart';
 import 'package:frontend/services/api_services.dart';
 import 'package:frontend/utils/colors.dart';
@@ -7,6 +8,7 @@ import 'package:frontend/utils/routes.dart';
 import 'package:frontend/widgets/custom_text_field.dart';
 import 'package:frontend/widgets/custom_title.dart';
 import 'package:frontend/widgets/click_button.dart';
+import 'package:frontend/widgets/error_text.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -26,8 +28,8 @@ class LoginPageState extends State<LoginPage> {
             onPressedFunction: () {
               CommonControllers.clearControllers();
               Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: signUpRoute)
+                context,
+                MaterialPageRoute(builder: signUpRoute)
               );
             },
           )
@@ -43,6 +45,9 @@ class LoginPageState extends State<LoginPage> {
           children: [
             CustomTitle(
               title: loginText
+            ),
+            ErrorText(
+              message: AuthErrorProvider.errorText
             ),
             CustomTextField(
               keyboardType: TextInputType.text,
@@ -67,6 +72,7 @@ class LoginPageState extends State<LoginPage> {
                   LoginControllers.passwordController.text.toString(),
                   context
                 );
+                setState(() {});
               }
             )
           ],

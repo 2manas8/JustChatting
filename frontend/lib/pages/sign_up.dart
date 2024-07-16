@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:frontend/providers/auth_providers.dart';
 import 'package:frontend/providers/controllers.dart';
 import 'package:frontend/services/api_services.dart';
 import 'package:frontend/utils/colors.dart';
@@ -8,6 +9,7 @@ import 'package:frontend/utils/routes.dart';
 import 'package:frontend/widgets/click_button.dart';
 import 'package:frontend/widgets/custom_text_field.dart';
 import 'package:frontend/widgets/custom_title.dart';
+import 'package:frontend/widgets/error_text.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -44,6 +46,9 @@ class SignUpPageState extends State<SignUpPage> {
           children: [
             CustomTitle(
               title: signUpText
+            ),
+            ErrorText(
+                message: AuthErrorProvider.errorText
             ),
             Expanded(
               child: SingleChildScrollView(
@@ -96,6 +101,7 @@ class SignUpPageState extends State<SignUpPage> {
                           SignUpControllers.passwordController.text.toString(),
                           context
                         );
+                        setState(() {});
                       }
                     )
                   ],

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:frontend/repositories/auth_repository.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
 import 'package:frontend/utils/routes.dart';
@@ -19,7 +20,7 @@ class SplashScreenPageState extends State<SplashScreenPage> {
       () async {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: loginRoute)
+          MaterialPageRoute(builder: await AuthRepository.tokenAvailable() ? homeRoute : loginRoute)
         );
       }
     );
