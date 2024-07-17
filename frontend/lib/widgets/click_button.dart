@@ -33,7 +33,7 @@ class ClickButtonState extends State<ClickButton> {
           ),
         ),
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(AppColors.secondaryColor)
+            backgroundColor: WidgetStateProperty.all(AppColors.secondaryColor)
         ),
       ),
     );

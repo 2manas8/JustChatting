@@ -29,7 +29,7 @@ class LoginPageState extends State<LoginPage> {
               CommonControllers.clearControllers();
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: signUpRoute)
+                MaterialPageRoute(builder: signUpRoute())
               );
             },
           )

@@ -13,6 +13,10 @@ class SignUpControllers {
   static TextEditingController passwordController = TextEditingController();
 }
 
+class ChatControllers {
+  static TextEditingController chatController = TextEditingController();
+}
+
 class CommonControllers {
   static bool hidePassword = true;
 
@@ -24,5 +28,6 @@ class CommonControllers {
     SignUpControllers.emailController.clear();
     SignUpControllers.phoneController.clear();
     SignUpControllers.passwordController.clear();
+    ChatControllers.chatController.clear();
   }
 }

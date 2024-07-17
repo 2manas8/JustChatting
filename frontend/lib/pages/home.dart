@@ -31,7 +31,7 @@ class HomePageState extends State<HomePage> {
               AuthRepository.removeToken();
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: loginRoute)
+                MaterialPageRoute(builder: loginRoute())
               );
             },
             icon: Icons.logout
@@ -51,7 +51,10 @@ class HomePageState extends State<HomePage> {
               print('Chat deleted');
             },
             onTapFunction: () {
-              print('Entered the chat');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: individualChatRoute('Name'))
+              );
             },
           ),
           CustomListTile(
@@ -61,7 +64,10 @@ class HomePageState extends State<HomePage> {
               print('Chat deleted');
             },
             onTapFunction: () {
-              print('Entered the chat');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: individualChatRoute('Name'))
+              );
             },
           )
         ],

@@ -25,7 +25,7 @@ class AuthenticationCalls {
         CommonControllers.clearControllers();
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: homeRoute)
+          MaterialPageRoute(builder: homeRoute())
         );
       } else {
         AuthErrorProvider.errorText = ((json.decode(response.body))['message']).toString();
@@ -54,7 +54,7 @@ class AuthenticationCalls {
         CommonControllers.clearControllers();
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: loginRoute)
+          MaterialPageRoute(builder: loginRoute())
         );
       } else {
         AuthErrorProvider.errorText = ((json.decode(response.body))['message']).toString();

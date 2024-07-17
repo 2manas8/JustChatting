@@ -7,7 +7,7 @@ const String logo = 'assets/images/logo.png';
 // Padding, margin and radius constants
 const double defaultPadding = 16.0;
 const double defaultMargin = 8.0;
-const double defaultBorderRadius = 10.0;
+const double defaultBorderRadius = 20.0;
 
 // Text constants
 const String appNameText = 'JustChatting';
@@ -20,6 +20,7 @@ const String signUpUsernameText = 'Enter username';
 const String signUpEmailText = 'Enter email';
 const String signUpPhoneText = 'Enter phone number';
 const String signUpPasswordText = 'Enter password';
+const String sendMessageHintText = 'Type your message';
 
 // API constants
 const String apiBaseUrl = 'https://justchatting.onrender.com/api/v1';

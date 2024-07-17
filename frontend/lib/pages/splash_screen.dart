@@ -20,7 +20,7 @@ class SplashScreenPageState extends State<SplashScreenPage> {
       () async {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: await AuthRepository.tokenAvailable() ? homeRoute : loginRoute)
+          MaterialPageRoute(builder: await AuthRepository.tokenAvailable() ? homeRoute() : loginRoute())
         );
       }
     );
