@@ -4,6 +4,7 @@ import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
 import 'package:frontend/utils/routes.dart';
 import 'package:frontend/widgets/action_button.dart';
+import 'package:frontend/widgets/custom_list_tile.dart';
 import 'package:frontend/widgets/custom_title.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +22,12 @@ class HomePageState extends State<HomePage> {
         actions: [
           ActionButton(
             onPressedFunction: () {
+              print('Searching for username provided');
+            },
+            icon: Icons.add
+          ),
+          ActionButton(
+            onPressedFunction: () {
               AuthRepository.removeToken();
               Navigator.pushReplacement(
                 context,
@@ -35,6 +42,30 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       backgroundColor: AppColors.baseColor,
+      body: Column(
+        children: [
+          CustomListTile(
+            title: 'Name',
+            subtitle: 'Username',
+            onPressedFunction: () {
+              print('Chat deleted');
+            },
+            onTapFunction: () {
+              print('Entered the chat');
+            },
+          ),
+          CustomListTile(
+            title: 'Name',
+            subtitle: 'Username',
+            onPressedFunction: () {
+              print('Chat deleted');
+            },
+            onTapFunction: () {
+              print('Entered the chat');
+            },
+          )
+        ],
+      ),
     );
   }
 }
