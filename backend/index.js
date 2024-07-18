@@ -16,6 +16,9 @@ const socketHandler = require('./websockets/socket_handler')
 const server = http.createServer(app)
 socketHandler(server)
 
+const chat = require('./routes/chat')
+app.use('/api/v1/chat', chat)
+
 server.listen(port, () => {
     console.log('Server and web socket running at port ' + port)
 })
