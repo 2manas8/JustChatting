@@ -2,7 +2,10 @@ const mongoose = require('mongoose')
 
 const MessageSchema = new mongoose.Schema({
     roomId: String,
-    sender: String,
+    sender: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'UserCollection'
+    },
     message: String,
     timeStamp: {
         type: Date,

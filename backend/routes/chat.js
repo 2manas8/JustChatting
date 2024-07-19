@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
 
-const {chatHistory} = require('../controller/chat_history')
+const {chatRoom} = require('../controllers/chat_room')
+router.post('/chat_room', chatRoom)
+
+const {chatHistory} = require('../controllers/chat_history')
 router.get('/chat_history', chatHistory)
 
-const {deleteChat} = require('../controller/delete_chat')
+const {deleteChat} = require('../controllers/delete_chat')
 router.delete('/delete_chat', deleteChat)
 
 module.exports = router
