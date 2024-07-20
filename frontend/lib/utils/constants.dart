@@ -21,11 +21,17 @@ const String signUpEmailText = 'Enter email';
 const String signUpPhoneText = 'Enter phone number';
 const String signUpPasswordText = 'Enter password';
 const String sendMessageHintText = 'Type your message';
+const String emptyHomeText = 'Your chats will appear here';
 
 // API constants
 const String apiBaseUrl = 'https://justchatting.onrender.com/api/v1';
 const String loginEndpoint = '/auth/login';
 const String signUpEndpoint = '/auth/signup';
+const String userRoomsEndpoint = '/user/user_rooms';
+const String userDetailsEndpoint = '/user/user_details';
+const String chatRoomEndpoint = '/chat/chat_room';
+const String chatHistoryEndpoint = '/chat/chat_history';
+const String deleteChatEndpoint = '/chat/delete_chat';
 
 // Header constants
 const Map<String, String> apiHeader = {"Content-type" : "application/json"};

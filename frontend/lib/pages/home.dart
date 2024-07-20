@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/models/user.dart';
+import 'package:frontend/providers/controllers.dart';
 import 'package:frontend/repositories/auth_repository.dart';
+import 'package:frontend/repositories/personal_details.dart';
+import 'package:frontend/services/user_services.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
+import 'package:frontend/utils/jwt.dart';
 import 'package:frontend/utils/routes.dart';
 import 'package:frontend/widgets/action_button.dart';
 import 'package:frontend/widgets/custom_list_tile.dart';
 import 'package:frontend/widgets/custom_title.dart';
+import 'package:frontend/widgets/empty_home.dart';
+import 'package:frontend/widgets/loading.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,6 +20,14 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  List<User>? users;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserDetails();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,36 +57,39 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       backgroundColor: AppColors.baseColor,
-      body: Column(
-        children: [
-          CustomListTile(
-            title: 'Name',
-            subtitle: 'Username',
-            onPressedFunction: () {
-              print('Chat deleted');
-            },
-            onTapFunction: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: individualChatRoute('Name'))
+      body: FetchRoomsControllers.isFetchingRooms
+        ? Loading()
+        : users == null
+          ? EmptyHome()
+          : ListView.builder(
+            itemCount: users!.length,
+            itemBuilder: (context, index) {
+              final user = users![index];
+              return CustomListTile(
+                title: user.name,
+                subtitle: user.username,
+                onPressedFunction: () {
+                  print('Chat deleted');
+                },
+                onTapFunction: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: individualChatRoute(user.name))
+                  );
+                },
               );
-            },
-          ),
-          CustomListTile(
-            title: 'Name',
-            subtitle: 'Username',
-            onPressedFunction: () {
-              print('Chat deleted');
-            },
-            onTapFunction: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: individualChatRoute('Name'))
-              );
-            },
+            }
           )
-        ],
-      ),
     );
+  }
+
+  void fetchUserDetails() async {
+    FetchRoomsControllers.isFetchingRooms = true;
+    String? token = await AuthRepository.getToken();
+    Jwt.decodeToken(token!);
+    users = await UserServices.loadRooms(PersonalDetails.id);
+    print(users);
+    FetchRoomsControllers.isFetchingRooms = false;
+    setState(() {});
   }
 }

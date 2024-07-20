@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/providers/auth_providers.dart';
 import 'package:frontend/providers/controllers.dart';
-import 'package:frontend/services/api_services.dart';
+import 'package:frontend/services/auth_services.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
 import 'package:frontend/utils/routes.dart';
