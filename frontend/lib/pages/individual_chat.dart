@@ -9,9 +9,11 @@ import 'package:frontend/widgets/text_bar.dart';
 
 class IndividualChatPage extends StatefulWidget {
   final String title;
+  final String roomId;
 
   const IndividualChatPage({
-    required this.title
+    required this.title,
+    required this.roomId
   });
 
   @override

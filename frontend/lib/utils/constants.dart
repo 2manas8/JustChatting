@@ -34,4 +34,4 @@ const String chatHistoryEndpoint = '/chat/chat_history';
 const String deleteChatEndpoint = '/chat/delete_chat';
 
 // Header constants
-const Map<String, String> apiHeader = {"Content-type" : "application/json"};
+const Map<String, String> apiHeader = {"Content-Type" : "application/json"};

@@ -16,6 +16,9 @@ WidgetBuilder homeRoute() {
   return (context) => HomePage();
 }
 
-WidgetBuilder individualChatRoute(String title) {
-  return (context) => IndividualChatPage(title: title);
+WidgetBuilder individualChatRoute(String title, String roomId) {
+  return (context) => IndividualChatPage(
+    title: title,
+    roomId: roomId,
+  );
 }

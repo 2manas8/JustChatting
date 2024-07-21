@@ -3,6 +3,7 @@ import 'package:frontend/models/user.dart';
 import 'package:frontend/providers/controllers.dart';
 import 'package:frontend/repositories/auth_repository.dart';
 import 'package:frontend/repositories/personal_details.dart';
+import 'package:frontend/services/chat_services.dart';
 import 'package:frontend/services/user_services.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
@@ -71,10 +72,11 @@ class HomePageState extends State<HomePage> {
                 onPressedFunction: () {
                   print('Chat deleted');
                 },
-                onTapFunction: () {
+                onTapFunction: () async {
+                  String? roomId = await ChatServices.findChatRoom(PersonalDetails.id, user.userId);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: individualChatRoute(user.name))
+                    MaterialPageRoute(builder: individualChatRoute(user.name, roomId!))
                   );
                 },
               );
@@ -88,7 +90,6 @@ class HomePageState extends State<HomePage> {
     String? token = await AuthRepository.getToken();
     Jwt.decodeToken(token!);
     users = await UserServices.loadRooms(PersonalDetails.id);
-    print(users);
     FetchRoomsControllers.isFetchingRooms = false;
     setState(() {});
   }
