@@ -8,7 +8,10 @@ exports.chatRoom = async (req, res) => {
             members: memberIds
         })
         if(existingRoom) {
-            return res.status(400).json({message: 'Room already exists'})
+            return res.status(400).json({
+                message: 'Room already exists',
+                room: existingRoom._id
+            })
         }
         const saveRoom = await Room.create({
             members: memberIds
