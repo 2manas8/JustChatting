@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/models/chat.dart';
 import 'package:frontend/providers/controllers.dart';
+import 'package:frontend/repositories/personal_details.dart';
+import 'package:frontend/services/chat_services.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
 import 'package:frontend/widgets/action_button.dart';
 import 'package:frontend/widgets/chat_title.dart';
+import 'package:frontend/widgets/loading.dart';
 import 'package:frontend/widgets/message_box.dart';
 import 'package:frontend/widgets/text_bar.dart';
 
@@ -21,6 +25,14 @@ class IndividualChatPage extends StatefulWidget {
 }
 
 class IndividualChatPageState extends State<IndividualChatPage> {
+  List<Chat>? chats;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchChatHistory();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,18 +63,20 @@ class IndividualChatPageState extends State<IndividualChatPage> {
         width: MediaQuery.of(context).size.width,
         child: Stack(
           children: [
-            ListView(
-              children: [
-                MessageBox(
-                    messageSent: true,
-                    message: 'Hello!'
-                ),
-                MessageBox(
-                    messageSent: false,
-                    message: 'Hey there! How are you?'
-                )
-              ],
-            ),
+            ChatControllers.isFetchingChatHistory
+            ? Loading()
+            : chats != null
+              ? ListView.builder(
+                itemCount: chats!.length,
+                itemBuilder: (context, index) {
+                  final chat = chats![index];
+                  return MessageBox(
+                    messageSent: chat.sender == PersonalDetails.id,
+                    message: chat.message
+                  );
+                }
+              )
+              : Container(),
             TextBar(
               controller: ChatControllers.chatController,
               hintText: sendMessageHintText,
@@ -77,5 +91,12 @@ class IndividualChatPageState extends State<IndividualChatPage> {
         ),
       ),
     );
+  }
+
+  void fetchChatHistory() async {
+    ChatControllers.isFetchingChatHistory = true;
+    chats = await ChatServices.loadChat(widget.roomId);
+    ChatControllers.isFetchingChatHistory = false;
+    setState(() {});
   }
 }

@@ -13,12 +13,13 @@ class SignUpControllers {
   static TextEditingController passwordController = TextEditingController();
 }
 
-class FetchRoomsControllers {
+class RoomsControllers {
   static bool isFetchingRooms = false;
 }
 
 class ChatControllers {
   static TextEditingController chatController = TextEditingController();
+  static bool isFetchingChatHistory = false;
 }
 
 class CommonControllers {

@@ -58,7 +58,7 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       backgroundColor: AppColors.baseColor,
-      body: FetchRoomsControllers.isFetchingRooms
+      body: RoomsControllers.isFetchingRooms
         ? Loading()
         : users == null
           ? EmptyHome()
@@ -86,11 +86,11 @@ class HomePageState extends State<HomePage> {
   }
 
   void fetchUserDetails() async {
-    FetchRoomsControllers.isFetchingRooms = true;
+    RoomsControllers.isFetchingRooms = true;
     String? token = await AuthRepository.getToken();
     Jwt.decodeToken(token!);
     users = await UserServices.loadRooms(PersonalDetails.id);
-    FetchRoomsControllers.isFetchingRooms = false;
+    RoomsControllers.isFetchingRooms = false;
     setState(() {});
   }
 }
