@@ -17,7 +17,7 @@ const chatSocket = (socket) => {
             Message.create({
                 roomId: roomId,
                 sender: sender,
-                message: message,
+                message: message
             });
             socket.to(roomId).emit('receiveMessage', message);
         } catch (error) {
