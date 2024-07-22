@@ -19,15 +19,16 @@ class UserServices {
   }
 
   static Future<List<User>?> findUser(String username) async {
-    if(username == PersonalDetails.username) {
-      return null;
-    }
     try {
-      Response response = await get(Uri.parse(apiBaseUrl + userDetailsEndpoint).replace(queryParameters: {'username': username}));
+      Response response = await get(
+        Uri.parse(apiBaseUrl + userDetailsEndpoint).replace(queryParameters: {
+          'username': username,
+          'my_username': PersonalDetails.username
+        })
+      );
       if(response.statusCode == 200) {
-        final Map<String, dynamic> jsonData = json.decode(response.body);
-        List<User> user = [User.fromJson(jsonData)];
-        return user;
+        final List<dynamic> jsonData = (json.decode(response.body))['users'];
+        return jsonData.map((json) => User.fromJson(json)).toList();
       }
     } catch(error) {
       print(error.toString());

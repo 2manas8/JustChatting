@@ -39,6 +39,7 @@ class HomePageState extends State<HomePage> {
         actions: [
           ActionButton(
             onPressedFunction: () {
+              RoomsControllers.isSearching = false;
               fetchUserDetails();
               setState(() {});
             },
@@ -46,6 +47,7 @@ class HomePageState extends State<HomePage> {
           ),
           ActionButton(
             onPressedFunction: () {
+              RoomsControllers.isSearching = false;
               AuthRepository.removeToken();
               Navigator.pushReplacement(
                 context,
