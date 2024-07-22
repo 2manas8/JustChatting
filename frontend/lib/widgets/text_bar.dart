@@ -3,6 +3,7 @@ import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
 
 class TextBar extends StatelessWidget {
+  final TextInputType keyboardType;
   final TextEditingController controller;
   final String hintText;
   final IconData suffixIcon;
@@ -10,6 +11,7 @@ class TextBar extends StatelessWidget {
   final int maxLines;
 
   const TextBar({
+    required this.keyboardType,
     required this.controller,
     required this.hintText,
     required this.suffixIcon,
@@ -23,7 +25,7 @@ class TextBar extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       padding: EdgeInsets.all(defaultPadding),
       child: TextField(
-        keyboardType: TextInputType.multiline,
+        keyboardType: keyboardType,
         controller: controller,
         obscureText: false,
         autofocus: false,

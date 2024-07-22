@@ -2,9 +2,8 @@ const User = require('../models/user')
 
 exports.userDetails = async (req, res) => {
     try {
-        const userId = req.query._id
         const username = req.query.username
-        const user = userId ? await User.findOne({_id: userId}) : await User.findOne({username: username})
+        const user = await User.findOne({username: username})
         if(!user) {
             return res.status(400).json({message: 'User does not exist'})
         }

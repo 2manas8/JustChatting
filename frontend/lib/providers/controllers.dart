@@ -14,6 +14,8 @@ class SignUpControllers {
 }
 
 class RoomsControllers {
+  static TextEditingController searchController = TextEditingController();
+  static bool isSearching = false;
   static bool isFetchingRooms = false;
 }
 
@@ -34,5 +36,6 @@ class CommonControllers {
     SignUpControllers.phoneController.clear();
     SignUpControllers.passwordController.clear();
     ChatControllers.chatController.clear();
+    RoomsControllers.searchController.clear();
   }
 }

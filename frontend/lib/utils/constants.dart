@@ -20,8 +20,10 @@ const String signUpUsernameText = 'Enter username';
 const String signUpEmailText = 'Enter email';
 const String signUpPhoneText = 'Enter phone number';
 const String signUpPasswordText = 'Enter password';
+const String searchBarText = 'Enter username to search';
 const String sendMessageHintText = 'Type your message';
 const String emptyHomeText = 'Your chats will appear here';
+const String noUsersFoundText = 'No user found';
 
 // API constants
 const String apiBaseUrl = 'https://justchatting.onrender.com/api/v1';

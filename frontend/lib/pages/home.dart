@@ -14,6 +14,7 @@ import 'package:frontend/widgets/custom_list_tile.dart';
 import 'package:frontend/widgets/custom_title.dart';
 import 'package:frontend/widgets/empty_home.dart';
 import 'package:frontend/widgets/loading.dart';
+import 'package:frontend/widgets/text_bar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -38,9 +39,10 @@ class HomePageState extends State<HomePage> {
         actions: [
           ActionButton(
             onPressedFunction: () {
-              print('Searching for username provided');
+              fetchUserDetails();
+              setState(() {});
             },
-            icon: Icons.add
+            icon: Icons.refresh
           ),
           ActionButton(
             onPressedFunction: () {
@@ -58,30 +60,58 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       backgroundColor: AppColors.baseColor,
-      body: RoomsControllers.isFetchingRooms
-        ? Loading()
-        : users == null
-          ? EmptyHome()
-          : ListView.builder(
-            itemCount: users!.length,
-            itemBuilder: (context, index) {
-              final user = users![index];
-              return CustomListTile(
-                title: user.name,
-                subtitle: user.username,
-                onPressedFunction: () {
-                  print('Chat deleted');
-                },
-                onTapFunction: () async {
-                  String? roomId = await ChatServices.findChatRoom(PersonalDetails.id, user.userId);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: individualChatRoute(user.name, roomId!))
-                  );
-                },
-              );
+      body: Column(
+        children: [
+          TextBar(
+            keyboardType: TextInputType.text,
+            controller: RoomsControllers.searchController,
+            hintText: searchBarText,
+            suffixIcon: RoomsControllers.isSearching ? Icons.close : Icons.search,
+            onPressedFunction: RoomsControllers.isSearching
+            ? () async {
+              RoomsControllers.isSearching = false;
+              CommonControllers.clearControllers();
+              fetchUserDetails();
+              setState(() {});
             }
-          )
+            : () async {
+              RoomsControllers.isSearching = true;
+              fetchUserDetails();
+              setState(() {});
+            },
+            maxLines: 1,
+          ),
+          Expanded(
+            child: RoomsControllers.isFetchingRooms
+            ? Loading()
+            : users == null
+              ? EmptyHome()
+              : ListView.builder(
+              itemCount: users!.length,
+              itemBuilder: (context, index) {
+                final user = users![index];
+                return CustomListTile(
+                  title: user.name,
+                  subtitle: user.username,
+                  onPressedFunction: () async {
+                    String? roomId = await ChatServices.findChatRoom(PersonalDetails.id, user.userId);
+                    await ChatServices.deleteChat(roomId!);
+                    fetchUserDetails();
+                  },
+                  onTapFunction: () async {
+                    String? roomId = await ChatServices.findChatRoom(PersonalDetails.id, user.userId);
+                    CommonControllers.clearControllers();
+                    RoomsControllers.isSearching = false;
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: individualChatRoute(user.name, roomId!))
+                    );
+                  },
+                );
+              }),
+          ),
+        ],
+      )
     );
   }
 
@@ -89,7 +119,11 @@ class HomePageState extends State<HomePage> {
     RoomsControllers.isFetchingRooms = true;
     String? token = await AuthRepository.getToken();
     Jwt.decodeToken(token!);
-    users = await UserServices.loadRooms(PersonalDetails.id);
+    if(RoomsControllers.isSearching) {
+      users = await UserServices.findUser(RoomsControllers.searchController.text.toString());
+    } else {
+      users = await UserServices.loadRooms(PersonalDetails.id);
+    }
     RoomsControllers.isFetchingRooms = false;
     setState(() {});
   }

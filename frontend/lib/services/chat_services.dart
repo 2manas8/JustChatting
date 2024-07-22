@@ -38,4 +38,15 @@ class ChatServices {
     }
     return null;
   }
+
+  static Future<void> deleteChat(String roomId) async {
+    try {
+      Response response = await delete(Uri.parse(apiBaseUrl + deleteChatEndpoint).replace(queryParameters: {'roomId': roomId}));
+      if(response.statusCode == 200) {
+        print(response.body);
+      }
+    } catch(error) {
+      print(error.toString());
+    }
+  }
 }

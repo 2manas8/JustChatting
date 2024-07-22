@@ -5,6 +5,7 @@ import 'package:frontend/repositories/personal_details.dart';
 import 'package:frontend/services/chat_services.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
+import 'package:frontend/utils/routes.dart';
 import 'package:frontend/widgets/action_button.dart';
 import 'package:frontend/widgets/chat_title.dart';
 import 'package:frontend/widgets/loading.dart';
@@ -40,7 +41,10 @@ class IndividualChatPageState extends State<IndividualChatPage> {
         automaticallyImplyLeading: false,
         leading: ActionButton(
           onPressedFunction: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: homeRoute())
+            );
           },
           icon: Icons.arrow_back,
         ),
@@ -49,8 +53,12 @@ class IndividualChatPageState extends State<IndividualChatPage> {
         ),
         actions: [
           ActionButton(
-            onPressedFunction: () {
-              print('Chat deleted');
+            onPressedFunction: () async {
+              await ChatServices.deleteChat(widget.roomId);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: homeRoute())
+              );
             },
             icon: Icons.delete
           )
@@ -78,6 +86,7 @@ class IndividualChatPageState extends State<IndividualChatPage> {
               )
               : Container(),
             TextBar(
+              keyboardType: TextInputType.multiline,
               controller: ChatControllers.chatController,
               hintText: sendMessageHintText,
               suffixIcon: Icons.send,
