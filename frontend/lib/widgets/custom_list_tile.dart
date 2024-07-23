@@ -36,6 +36,7 @@ class CustomListTile extends StatelessWidget {
             fontSize: 25,
             fontWeight: FontWeight.bold
           ),
+          maxLines: 1,
         ),
         subtitle: Text(
           subtitle,

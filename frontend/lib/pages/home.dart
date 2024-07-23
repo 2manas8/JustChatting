@@ -9,6 +9,7 @@ import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
 import 'package:frontend/utils/jwt.dart';
 import 'package:frontend/utils/routes.dart';
+import 'package:frontend/utils/websocket.dart';
 import 'package:frontend/widgets/action_button.dart';
 import 'package:frontend/widgets/custom_list_tile.dart';
 import 'package:frontend/widgets/custom_title.dart';
@@ -28,6 +29,7 @@ class HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     fetchUserDetails();
+    Websocket.socketConnect();
   }
 
   @override
@@ -78,7 +80,11 @@ class HomePageState extends State<HomePage> {
             }
             : () async {
               RoomsControllers.isSearching = true;
-              fetchUserDetails();
+              if(RoomsControllers.searchController.text.isNotEmpty) {
+                fetchUserDetails();
+              } else {
+                RoomsControllers.isSearching = false;
+              }
               setState(() {});
             },
             maxLines: 1,
@@ -102,9 +108,7 @@ class HomePageState extends State<HomePage> {
                   },
                   onTapFunction: () async {
                     String? roomId = await ChatServices.findChatRoom(PersonalDetails.id, user.userId);
-                    CommonControllers.clearControllers();
-                    RoomsControllers.isSearching = false;
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(builder: individualChatRoute(user.name, roomId!))
                     );

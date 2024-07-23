@@ -18,7 +18,7 @@ class MessageBox extends StatelessWidget {
       alignment: messageSent ? Alignment.centerRight : Alignment.centerLeft,
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width - 45
+          maxWidth: MediaQuery.of(context).size.width - 100
         ),
         child: Container(
           child: Padding(

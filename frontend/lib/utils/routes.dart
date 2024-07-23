@@ -19,6 +19,6 @@ WidgetBuilder homeRoute() {
 WidgetBuilder individualChatRoute(String title, String roomId) {
   return (context) => IndividualChatPage(
     title: title,
-    roomId: roomId,
+    roomId: roomId
   );
 }

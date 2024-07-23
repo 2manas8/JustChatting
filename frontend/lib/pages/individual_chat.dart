@@ -5,7 +5,7 @@ import 'package:frontend/repositories/personal_details.dart';
 import 'package:frontend/services/chat_services.dart';
 import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
-import 'package:frontend/utils/routes.dart';
+import 'package:frontend/utils/websocket.dart';
 import 'package:frontend/widgets/action_button.dart';
 import 'package:frontend/widgets/chat_title.dart';
 import 'package:frontend/widgets/loading.dart';
@@ -32,6 +32,10 @@ class IndividualChatPageState extends State<IndividualChatPage> {
   void initState() {
     super.initState();
     fetchChatHistory();
+    Websocket.joinRoom(widget.roomId);
+    Websocket.receiveMessage(() {
+      fetchChatHistory();
+    });
   }
 
   @override
@@ -41,10 +45,8 @@ class IndividualChatPageState extends State<IndividualChatPage> {
         automaticallyImplyLeading: false,
         leading: ActionButton(
           onPressedFunction: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: homeRoute())
-            );
+            Websocket.leaveRoom(widget.roomId);
+            Navigator.pop(context);
           },
           icon: Icons.arrow_back,
         ),
@@ -55,10 +57,7 @@ class IndividualChatPageState extends State<IndividualChatPage> {
           ActionButton(
             onPressedFunction: () async {
               await ChatServices.deleteChat(widget.roomId);
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: homeRoute())
-              );
+              Navigator.pop(context);
             },
             icon: Icons.delete
           )
@@ -69,30 +68,39 @@ class IndividualChatPageState extends State<IndividualChatPage> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: Stack(
+        child: Column(
           children: [
-            ChatControllers.isFetchingChatHistory
-            ? Loading()
-            : chats != null
-              ? ListView.builder(
-                itemCount: chats!.length,
-                itemBuilder: (context, index) {
-                  final chat = chats![index];
-                  return MessageBox(
-                    messageSent: chat.sender == PersonalDetails.id,
-                    message: chat.message
-                  );
-                }
-              )
-              : Container(),
+            Expanded(
+              child: ChatControllers.isFetchingChatHistory
+              ? Loading()
+              : chats != null
+                ? ListView.builder(
+                  reverse: true,
+                  itemCount: chats!.length,
+                  itemBuilder: (context, index) {
+                    final chat = chats![index];
+                    return MessageBox(
+                      messageSent: chat.sender == PersonalDetails.id,
+                      message: chat.message
+                    );
+                  }
+                )
+                : Container(),
+            ),
             TextBar(
               keyboardType: TextInputType.multiline,
               controller: ChatControllers.chatController,
               hintText: sendMessageHintText,
               suffixIcon: Icons.send,
               onPressedFunction: () {
-                print('Message sent');
-                CommonControllers.clearControllers();
+                if(ChatControllers.chatController.text.isNotEmpty) {
+                  Websocket.sendMessage(
+                      widget.roomId,
+                      ChatControllers.chatController.text.toString()
+                  );
+                  CommonControllers.clearControllers();
+                }
+                fetchChatHistory();
               },
               maxLines: 5,
             )

@@ -34,6 +34,7 @@ const String userDetailsEndpoint = '/user/user_details';
 const String chatRoomEndpoint = '/chat/chat_room';
 const String chatHistoryEndpoint = '/chat/chat_history';
 const String deleteChatEndpoint = '/chat/delete_chat';
+const String socketUrl = 'https://justchatting.onrender.com';
 
 // Header constants
 const Map<String, String> apiHeader = {"Content-Type" : "application/json"};
