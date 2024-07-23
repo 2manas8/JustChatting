@@ -7,7 +7,6 @@ const chatSocket = (socket) => {
     })
     socket.on('leaveRoom', (roomId) => {
         socket.leave(roomId)
-        console.log('User left the room: ' + roomId)
     })
     socket.on('sendMessage', (data) => {
         const roomId = data.roomId
