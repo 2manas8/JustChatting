@@ -1,4 +1,4 @@
-# JustChatting App
+# JustChatting
 
 JustChatting is a Flutter-based chat application that allows users to communicate with each other through real-time messaging. This README provides an overview of the main pages in the app, including the Authentication Page, Home Page, Search Page, and Individual Chat Page.
 
@@ -10,7 +10,7 @@ JustChatting is a Flutter-based chat application that allows users to communicat
 - **API Hosting**: Render.com
 - **Real-time Synchronization**: Socket.io
 
-[Tech Stack](./assets/tech_stack.png)
+![Tech Stack](./assets/tech_stack.png)
 
 ## Frontend
 
@@ -36,7 +36,7 @@ The Signup Page allows new users to create an account by providing their email a
 
 By providing clear pathways for both logging in and signing up, the Authentication Page ensures a smooth user experience for both new and returning users.
 
-[Authentication Page](./assets/authentication.png)
+![Authentication Page](./assets/authentication.png)
 
 ### Home Page
 
@@ -46,7 +46,7 @@ The Home Page serves as the main hub for the user after logging in. It displays 
 - **Delete Chat:** Allows the user to delete a chat.
 - **New Chat Search:** Allows users to start a new conversation.
 
-[Home Page](./assets/home.png)
+![Home Page](./assets/home.png)
 
 ### Search Page
 
@@ -56,7 +56,7 @@ The Search Page allows users to search for other users by their username or othe
 - **Search Results:** Displays a list of users matching the search criteria.
 - **Start Chat Button:** Initiates a new conversation with the selected user.
 
-[Search Page](./assets/search.png)
+![Search Page](./assets/search.png)
 
 ### Individual Chat Page
 
@@ -67,7 +67,7 @@ The Individual Chat Page is where users can have one-on-one conversations. It pr
 - **Send Button:** Sends the typed message to the contact.
 - **Delete Chat:** Allows the user to delete a chat.
 
-[Individual Chat Page](./assets/chat.png)
+![Individual Chat Page](./assets/chat.png)
 
 ## Backend
 
