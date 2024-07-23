@@ -7,6 +7,7 @@ exports.chatHistory = async (req, res) => {
             return res.status(400).json({message: 'No room ID provided'})
         }
         const allMessages = await Message.find({roomId: roomId})
+        allMessages.reverse()
         res.status(200).json({
             message: 'Chats fetched',
             chats: allMessages
