@@ -184,3 +184,14 @@ The API endpoints facilitate communication between the client app and the backen
 1. **Create a MongoDB Atlas account**: If you don't have one, create an account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 2. **Set up a new cluster**: Follow the instructions to create a new cluster.
 3. **Get the connection string**: Obtain the connection string for your MongoDB database and replace the placeholder in the `.env` file.
+
+## Latest Release
+
+- **Version:** v1.0.0
+- **Release Date:** July 23, 2024
+- **Release Notes:** All the features are listed above and the download links to the latest release are provided below
+     
+### APK Download
+- [ARM64-v8a](https://github.com/2manas8/JustChatting/releases/download/v1.0.0/app-arm64-v8a-release.apk)
+- [ARM-v7a](https://github.com/2manas8/JustChatting/releases/download/v1.0.0/app-armeabi-v7a-release.apk)
+- [x86](https://github.com/2manas8/JustChatting/releases/download/v1.0.0/app-x86_64-release.apk)
