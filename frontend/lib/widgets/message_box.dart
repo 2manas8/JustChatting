@@ -6,7 +6,7 @@ class MessageBox extends StatelessWidget {
   final bool messageSent;
   final String message;
 
-  const MessageBox({
+  const MessageBox({super.key, 
     required this.messageSent,
     required this.message
   });
@@ -14,13 +14,17 @@ class MessageBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(defaultPadding),
       alignment: messageSent ? Alignment.centerRight : Alignment.centerLeft,
       child: ConstrainedBox(
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width - 100
         ),
         child: Container(
+          decoration: BoxDecoration(
+            color: messageSent ? AppColors.secondaryColor : AppColors.tertiaryColor,
+            borderRadius: BorderRadius.circular(defaultBorderRadius)
+          ),
           child: Padding(
             padding: const EdgeInsets.all(defaultPadding),
             child: Text(
@@ -30,10 +34,6 @@ class MessageBox extends StatelessWidget {
                 color: AppColors.primaryColor
               ),
             ),
-          ),
-          decoration: BoxDecoration(
-            color: messageSent ? AppColors.secondaryColor : AppColors.tertiaryColor,
-            borderRadius: BorderRadius.circular(defaultBorderRadius)
           ),
         ),
       ),

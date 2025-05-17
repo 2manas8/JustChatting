@@ -10,7 +10,7 @@ class CustomTextField extends StatefulWidget {
   final IconData prefixIcon;
   final bool textObscureNeeded;
 
-  const CustomTextField({
+  const CustomTextField({super.key, 
     required this.keyboardType,
     required this.controller,
     required this.hintText,
@@ -26,7 +26,7 @@ class CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(defaultPadding),
       child: TextField(
         keyboardType: widget.keyboardType,
         controller: widget.controller,

@@ -16,7 +16,7 @@ class IndividualChatPage extends StatefulWidget {
   final String title;
   final String roomId;
 
-  const IndividualChatPage({
+  const IndividualChatPage({super.key, 
     required this.title,
     required this.roomId
   });
@@ -65,14 +65,14 @@ class IndividualChatPageState extends State<IndividualChatPage> {
         backgroundColor: AppColors.baseColor,
       ),
       backgroundColor: AppColors.baseColor,
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
             Expanded(
               child: ChatControllers.isFetchingChatHistory
-              ? Loading()
+              ? const Loading()
               : chats != null
                 ? ListView.builder(
                   reverse: true,

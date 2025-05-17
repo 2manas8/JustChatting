@@ -11,6 +11,8 @@ import 'package:frontend/widgets/click_button.dart';
 import 'package:frontend/widgets/error_text.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<LoginPage> createState() => LoginPageState();
 }
@@ -37,13 +39,13 @@ class LoginPageState extends State<LoginPage> {
       ),
       backgroundColor: AppColors.baseColor,
       body: Container(
-        padding: EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.all(defaultPadding),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CustomTitle(
+            const CustomTitle(
               title: loginText
             ),
             ErrorText(

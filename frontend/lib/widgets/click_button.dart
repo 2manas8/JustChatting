@@ -6,7 +6,7 @@ class ClickButton extends StatefulWidget {
   final String text;
   final void Function() onPressedFunction;
 
-  const ClickButton({
+  const ClickButton({super.key, 
     required this.text,
     required this.onPressedFunction
   });
@@ -20,9 +20,12 @@ class ClickButtonState extends State<ClickButton> {
   Widget build(BuildContext context) {
     return Container(
       width: 100,
-      margin: EdgeInsets.all(defaultMargin),
+      margin: const EdgeInsets.all(defaultMargin),
       child: ElevatedButton(
         onPressed: widget.onPressedFunction,
+        style: ButtonStyle(
+            backgroundColor: WidgetStateProperty.all(AppColors.secondaryColor)
+        ),
         child: Center(
           child: Text(
             widget.text,
@@ -31,9 +34,6 @@ class ClickButtonState extends State<ClickButton> {
                 fontWeight: FontWeight.bold
             ),
           ),
-        ),
-        style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(AppColors.secondaryColor)
         ),
       ),
     );

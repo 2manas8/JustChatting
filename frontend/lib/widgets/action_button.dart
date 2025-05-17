@@ -5,7 +5,7 @@ class ActionButton extends StatelessWidget {
   final void Function() onPressedFunction;
   final IconData icon;
 
-  ActionButton({
+  const ActionButton({super.key, 
     required this.onPressedFunction,
     required this.icon
   });

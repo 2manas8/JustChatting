@@ -3,12 +3,14 @@ import 'package:frontend/utils/colors.dart';
 import 'package:frontend/utils/constants.dart';
 
 class Loading extends StatelessWidget {
+  const Loading({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topCenter,
       child: Container(
-          margin: EdgeInsets.all(defaultMargin),
+          margin: const EdgeInsets.all(defaultMargin),
           height: 50,
           alignment: Alignment.center,
           child: CircularProgressIndicator(

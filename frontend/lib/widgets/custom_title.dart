@@ -5,7 +5,7 @@ import 'package:frontend/utils/constants.dart';
 class CustomTitle extends StatelessWidget {
   final String title;
 
-  const CustomTitle({
+  const CustomTitle({super.key, 
     required this.title
   });
 

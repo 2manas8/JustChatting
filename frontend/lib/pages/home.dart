@@ -18,6 +18,8 @@ import 'package:frontend/widgets/loading.dart';
 import 'package:frontend/widgets/text_bar.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => HomePageState();
 }
@@ -59,7 +61,7 @@ class HomePageState extends State<HomePage> {
             icon: Icons.logout
           )
         ],
-        title: CustomTitle(
+        title: const CustomTitle(
           title: appNameText,
         ),
       ),
@@ -91,9 +93,9 @@ class HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: RoomsControllers.isFetchingRooms
-            ? Loading()
+            ? const Loading()
             : users == null
-              ? EmptyHome()
+              ? const EmptyHome()
               : ListView.builder(
               itemCount: users!.length,
               itemBuilder: (context, index) {

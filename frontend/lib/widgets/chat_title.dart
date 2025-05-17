@@ -4,7 +4,7 @@ import 'package:frontend/utils/colors.dart';
 class ChatTitle extends StatelessWidget {
   final String title;
 
-  const ChatTitle({
+  const ChatTitle({super.key, 
     required this.title
   });
 

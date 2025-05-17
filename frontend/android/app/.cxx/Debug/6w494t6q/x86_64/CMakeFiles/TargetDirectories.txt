@@ -1,0 +1,2 @@
+E:/JustChatting/frontend/android/app/.cxx/Debug/6w494t6q/x86_64/CMakeFiles/edit_cache.dir
+E:/JustChatting/frontend/android/app/.cxx/Debug/6w494t6q/x86_64/CMakeFiles/rebuild_cache.dir

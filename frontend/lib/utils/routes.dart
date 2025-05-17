@@ -5,15 +5,15 @@ import 'package:frontend/pages/login.dart';
 import 'package:frontend/pages/sign_up.dart';
 
 WidgetBuilder loginRoute() {
-  return ((context) => LoginPage());
+  return ((context) => const LoginPage());
 }
 
 WidgetBuilder signUpRoute() {
-  return ((context) => SignUpPage());
+  return ((context) => const SignUpPage());
 }
 
 WidgetBuilder homeRoute() {
-  return (context) => HomePage();
+  return (context) => const HomePage();
 }
 
 WidgetBuilder individualChatRoute(String title, String roomId) {

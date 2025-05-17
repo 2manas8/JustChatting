@@ -7,6 +7,8 @@ import 'package:frontend/utils/routes.dart';
 import 'package:frontend/widgets/splash_screen_image.dart';
 
 class SplashScreenPage extends StatefulWidget {
+  const SplashScreenPage({super.key});
+
   @override
   State<SplashScreenPage> createState() => SplashScreenPageState();
 }
@@ -29,7 +31,7 @@ class SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SplashScreenImage(),
+      body: const SplashScreenImage(),
       backgroundColor: AppColors.baseColor,
     );
   }

@@ -10,7 +10,7 @@ class TextBar extends StatelessWidget {
   final void Function() onPressedFunction;
   final int maxLines;
 
-  const TextBar({
+  const TextBar({super.key, 
     required this.keyboardType,
     required this.controller,
     required this.hintText,
@@ -23,7 +23,7 @@ class TextBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.bottomCenter,
-      padding: EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.all(defaultPadding),
       child: TextField(
         keyboardType: keyboardType,
         controller: controller,

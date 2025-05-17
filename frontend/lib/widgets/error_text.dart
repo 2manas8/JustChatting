@@ -4,7 +4,7 @@ import 'package:frontend/utils/colors.dart';
 class ErrorText extends StatelessWidget {
   final String message;
 
-  const ErrorText({
+  const ErrorText({super.key, 
     required this.message
   });
 

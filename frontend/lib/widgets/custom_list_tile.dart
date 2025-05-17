@@ -7,7 +7,7 @@ class CustomListTile extends StatelessWidget {
   final void Function() onPressedFunction;
   final void Function() onTapFunction;
 
-  CustomListTile({
+  const CustomListTile({super.key, 
     required this.title,
     required this.subtitle,
     required this.onPressedFunction,

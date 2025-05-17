@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/providers/auth_providers.dart';
 import 'package:frontend/providers/controllers.dart';
@@ -12,6 +11,8 @@ import 'package:frontend/widgets/custom_title.dart';
 import 'package:frontend/widgets/error_text.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   State<SignUpPage> createState() => SignUpPageState();
 }
@@ -38,13 +39,13 @@ class SignUpPageState extends State<SignUpPage> {
       ),
       backgroundColor: AppColors.baseColor,
       body: Container(
-        padding: EdgeInsets.all(defaultPadding),
+        padding: const EdgeInsets.all(defaultPadding),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            CustomTitle(
+            const CustomTitle(
               title: signUpText
             ),
             ErrorText(
